@@ -19,6 +19,9 @@ CREATE TABLE produkte (
 );
 COMMENT ON TABLE produkte IS 'Enthält ein Subset der Artikel aus dem Warenwirtschaftssystem';
 
+-- auskommentiert zur Fehlersuche
+CREATE UNIQUE INDEX product_preis_ukey ON produkte (UPPER(bezeichnung), preis);
+
 -- Bestellungen
 CREATE TABLE bestellungen (
     bestellung_id SERIAL PRIMARY KEY,
@@ -30,7 +33,7 @@ CREATE TABLE bestellungen (
     bezahlt BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (kunden_id) REFERENCES kunden(kunden_id)
 );
-COMMENT ON TABLE bestellungen IS 'Enthält die Köpfe der Bestellungen, wird täglich ins CRM Synchronisiert';
+COMMENT ON TABLE bestellungen IS 'Enthält die Köpfe der Bestellungen, wird täglich ins CRM synchronisiert';
 
 -- Bestellpositionen
 CREATE TABLE bestellpositionen (

@@ -14,6 +14,8 @@ CREATE TABLE produkte (
     preis DECIMAL(10,2) NOT NULL
 ) COMMENT = 'Enthält ein Subset der Artikel aus dem Warenwirtschaftssystem';
 
+CREATE UNIQUE INDEX product_preis_ukey ON produkte ((UPPER(bezeichnung)), preis);
+
 -- Bestellungen
 CREATE TABLE bestellungen (
     bestellung_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -24,7 +26,7 @@ CREATE TABLE bestellungen (
     bemerkung VARCHAR(255),
     bezahlt TINYINT(1) DEFAULT 0,
     FOREIGN KEY (kunden_id) REFERENCES kunden(kunden_id)
-) COMMENT = 'Enthält die Köpfe der Bestellungen, wird täglich ins CRM Synchronisiert';
+) COMMENT = 'Enthält die Köpfe der Bestellungen, wird täglich ins CRM synchronisiert';
 
 -- Bestellpositionen
 CREATE TABLE bestellpositionen (
