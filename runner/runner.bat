@@ -43,7 +43,7 @@ set DATABASE_INIT_SCRIPT=init-multi-schema.sql
 
 ::goto :EOF
 
-echo skipping POSTGRES
+::echo skipping POSTGRES
 ::goto :END_SKIP_POSTGRES
 
 echo ============================================
